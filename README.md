@@ -1,24 +1,72 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## userテーブル
+| Column             | Type   | Options     |
+| ------------------ | ------ | ----------- |
+| nickname           | string | null: false |
+| email              | string | null: false |
+| encrypted_password | string | null: false |
+| name               | string | null: false |
+| birthday           | date   | null: false |
 
-Things you may want to cover:
+### Association
 
-* Ruby version
+- has_many :items
+- has_many :orders
+- has_many :comments
 
-* System dependencies
+## itemsテーブル
+| Column                   | Type       | Options                        |
+| ------------------------ | ---------- | ------------------------------ |
+| image                    | string     |                                |
+| item_name                | string     | null: false                    |
+| explanation              | text       | null: false                    |
+| detail(category, status) | text       | null: false                    |
+| price                    | integer    | null: false                    |
+| user                     | references | null: false, foreign_key: true |
 
-* Configuration
+### Association
 
-* Database creation
+- belongs_to :user
+- has_one :order
+- has_many :comments
 
-* Database initialization
+## ordersテーブル
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| token  | string     | null: false                    |
+| user   | references | null: false, foreign_key: true |
+| item   | references | null: false, foreign_key: true |
 
-* How to run the test suite
+### Association
 
-* Services (job queues, cache servers, search engines, etc.)
+- belongs_to :user
+- belongs_to :item
+- has_one :shipment
 
-* Deployment instructions
+## shipmentsテーブル
+| Column           | Type       | Options                        |
+| ---------------- | ---------- | ------------------------------ |
+| postal-code      | integer    | null: false                    |
+| prefecture       | integer    | null: false                    |
+| city             | string     | null: false                    |
+| house-number     | string     | null: false                    |
+| building-name    | string     | null: false                    |
+| telephone-number | integer    | null: false                    |
+| order            | references | null: false, foreign_key: true |
 
-* ...
+### Association
+
+- belongs_to :order
+
+## commentsテーブル
+| Column  | Type       | Options                        |
+| ------- | ---------- | ------------------------------ |
+| comment | text       | null: false                    |
+| user    | references | null: false, foreign_key: true |
+| item    | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :user
+- belongs_to :item
