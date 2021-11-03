@@ -23,8 +23,8 @@
 | ---------------- | ---------- | ------------------------------ |
 | item_name        | string     | null: false                    |
 | explanation      | text       | null: false                    |
-| category_id      | text       | null: false                    |
-| status_id        | text       | null: false                    |
+| category_id      | integer    | null: false                    |
+| status_id        | integer    | null: false                    |
 | price            | integer    | null: false                    |
 | prefecture_id    | integer    | null: false                    |
 | shipment_fee_id  | integer    | null: false                    |
