@@ -1,16 +1,16 @@
 # README
 
 ## userテーブル
-| Column             | Type   | Options     |
-| ------------------ | ------ | ----------- |
-| nickname           | string | null: false |
-| email              | string | null: false unique: true　|
-| encrypted_password | string | null: false |
-| last_name          | string | null: false |
-| last_name_reading  | string | null: false |
-| first_name         | string | null: false |
-| first_name_reading | string | null: false |
-| birthday           | date   | null: false |
+| Column             | Type   | Options                   |
+| ------------------ | ------ | ------------------------- |
+| nickname           | string | null: false               |
+| email              | string | null: false unique: true  |
+| encrypted_password | string | null: false               |
+| last_name          | string | null: false               |
+| last_name_reading  | string | null: false               |
+| first_name         | string | null: false               |
+| first_name_reading | string | null: false               |
+| birthday           | date   | null: false               |
 
 ### Association
 
@@ -37,7 +37,6 @@
 ## ordersテーブル
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
-| token  | string     | null: false                    |
 | user   | references | null: false, foreign_key: true |
 | item   | references | null: false, foreign_key: true |
 
