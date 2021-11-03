@@ -21,7 +21,6 @@
 ## itemsテーブル
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
-| image         | string     |                                |
 | item_name     | string     | null: false                    |
 | explanation   | text       | null: false                    |
 | category      | text       | null: false                    |
