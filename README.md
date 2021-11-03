@@ -27,6 +27,7 @@
 | category      | text       | null: false                    |
 | status        | text       | null: false                    |
 | price         | integer    | null: false                    |
+| prefecture    | integer    | null: false                    |
 | shipment_fee  | integer    | null: false                    |
 | shipment_days | integer    | null: false                    |
 | user          | references | null: false, foreign_key: true |
