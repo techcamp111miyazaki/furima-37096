@@ -49,7 +49,7 @@
 ## shipmentsテーブル
 | Column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
-| postal-code      | integer    | null: false                    |
+| postal_code      | string     | null: false                    |
 | prefecture       | integer    | null: false                    |
 | city             | string     | null: false                    |
 | house-number     | string     | null: false                    |
