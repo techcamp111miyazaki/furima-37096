@@ -3,6 +3,7 @@ class Item < ApplicationRecord
   # has_many :orders
   has_one_attached :image
 
+  validates :item_name         presence: true
   validates :explanation,      presence: true
   validates :category_id,      presence: true
   validates :status_id,        presence: true
