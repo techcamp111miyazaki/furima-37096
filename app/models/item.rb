@@ -4,9 +4,10 @@ class Item < ApplicationRecord
   has_one_attached :image
 
   with_options presence: true do
+    :image
     :item_name 
     :explanation
-    :price
+    :price numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "is invalid"}
     with_options numericality: { other_than: 1 , message: "can't be blank"} do
       :category_id
       :status_id
