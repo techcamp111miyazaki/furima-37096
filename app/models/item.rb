@@ -4,16 +4,16 @@ class Item < ApplicationRecord
   has_one_attached :image
 
   with_options presence: true do
-    :image
-    :item_name 
-    :explanation
-    :price numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "is invalid"}
+    validates :image
+    validates :item_name 
+    validates :explanation
+    validates :price, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "is invalid"}
     with_options numericality: { other_than: 1 , message: "can't be blank"} do
-      :category_id
-      :status_id
-      :prefecture_id
-      :shipment_fee_id
-      :shipment_days_id
+      validates :category_id
+      validates :status_id
+      validates :prefecture_id
+      validates :shipment_fee_id
+      validates :shipment_days_id
     end
   end
 
