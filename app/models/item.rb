@@ -29,8 +29,6 @@ class Item < ApplicationRecord
   # validates :shipment_fee_id,  presence: true, numericality: { other_than: 1 , message: "can't be blank"}
   # validates :shipment_days_id, presence: true, numericality: { other_than: 1 , message: "can't be blank"}
 
-  references :user, foreign_kye: true
-
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
   belongs_to :status
