@@ -32,27 +32,27 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Explanation can't be blank")
       end
       it 'category_idが1だと保存できない' do
-        @item.category_id = '1'
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
       it 'status_idが1だと保存できない' do
-        @item.status_id = '1'
+        @item.status_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Status can't be blank")
       end
       it 'prefecture_idが1だと保存できない' do
-        @item.prefecture_id = '1'
+        @item.prefecture_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
       it 'shipment_fee_idが1だと保存できない' do
-        @item.shipment_fee_id = '1'
+        @item.shipment_fee_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipment fee can't be blank")
       end
       it 'shipment_days_idが1だと保存できない' do
-        @item.shipment_days_id = '1'
+        @item.shipment_days_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipment days can't be blank")
       end
@@ -72,12 +72,12 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Price is invalid. Input half-width numbers between from 300 to 9999999.')
       end
       it 'priceが300未満だと保存できない' do
-        @item.price = '299'
+        @item.price = 299
         @item.valid?
         expect(@item.errors.full_messages).to include('Price is invalid. Input half-width numbers between from 300 to 9999999.')
       end
       it 'priceが10000000以上だと保存できない' do
-        @item.price = '10000000'
+        @item.price = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include('Price is invalid. Input half-width numbers between from 300 to 9999999.')
       end
