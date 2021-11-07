@@ -77,11 +77,11 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Price is invalid. Input half-width numbers between from 300 to 9999999.')
       end
       it 'priceが10000000以上だと保存できない' do
-        @item.price = 10000000
+        @item.price = 10_000_000
         @item.valid?
         expect(@item.errors.full_messages).to include('Price is invalid. Input half-width numbers between from 300 to 9999999.')
       end
-      it "userに紐づいていないと保存できない" do
+      it 'userに紐づいていないと保存できない' do
         @item.user = nil
         @item.valid?
         expect(@item.errors.full_messages).to include('User must exist')
