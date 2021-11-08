@@ -64,22 +64,22 @@ RSpec.describe Item, type: :model do
       it 'priceが全角表記だと保存できない' do
         @item.price = '２２２２'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price is invalid. Input half-width numbers between from 300 to 9999999.')
+        expect(@item.errors.full_messages).to include('Price is invalid. Input half-width numbers between from 300 to 9,999,999.')
       end
       it 'priceが半角と全角の混合表記だと保存できない' do
         @item.price = '２２22'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price is invalid. Input half-width numbers between from 300 to 9999999.')
+        expect(@item.errors.full_messages).to include('Price is invalid. Input half-width numbers between from 300 to 9,999,999.')
       end
       it 'priceが300未満だと保存できない' do
         @item.price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price is invalid. Input half-width numbers between from 300 to 9999999.')
+        expect(@item.errors.full_messages).to include('Price is invalid. Input half-width numbers between from 300 to 9,999,999.')
       end
       it 'priceが10000000以上だと保存できない' do
         @item.price = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price is invalid. Input half-width numbers between from 300 to 9999999.')
+        expect(@item.errors.full_messages).to include('Price is invalid. Input half-width numbers between from 300 to 9,999,999.')
       end
       it 'userに紐づいていないと保存できない' do
         @item.user = nil
