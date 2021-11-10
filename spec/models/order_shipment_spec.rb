@@ -31,6 +31,11 @@ RSpec.describe OrderShipment, type: :model do
         @order_shipment.valid?
         expect(@order_shipment.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
+      it "prefecture_idが１では保存できない" do
+        @order_shipment.prefecture_id = 1
+        @order_shipment.valid?
+        expect(@order_shipment.errors.full_messages).to include("Prefecture can't be blank")
+      end
       it 'cityが空では保存できない' do
         @order_shipment.city = ''
         @order_shipment.valid?
@@ -47,7 +52,17 @@ RSpec.describe OrderShipment, type: :model do
         expect(@order_shipment.errors.full_messages).to include("Telephone number can't be blank")
       end
       it 'telephone_numberが11桁以上では保存できない' do
-        @order_shipment.telephone_number = '090-1234-5678'
+        @order_shipment.telephone_number = '09012345678900'
+        @order_shipment.valid?
+        expect(@order_shipment.errors.full_messages).to include('Telephone number is invalid. Input half-width numbers between from 10 to 11 characters')
+      end
+      it 'telephone_numberが9桁以下では保存できない' do
+        @order_shipment.telephone_number = '0901234'
+        @order_shipment.valid?
+        expect(@order_shipment.errors.full_messages).to include('Telephone number is invalid. Input half-width numbers between from 10 to 11 characters')
+      end
+      it 'telephone_numberに半角数字以外が混入すると保存できない' do
+        @order_shipment.telephone_number = '090a1234567'
         @order_shipment.valid?
         expect(@order_shipment.errors.full_messages).to include('Telephone number is invalid. Input half-width numbers between from 10 to 11 characters')
       end
