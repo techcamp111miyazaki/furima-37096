@@ -46,6 +46,11 @@ RSpec.describe OrderShipment, type: :model do
         @order_shipment.valid?
         expect(@order_shipment.errors.full_messages).to include("Telephone number can't be blank")
       end
+      it "telephone_numberが11桁以上では保存できない" do
+        @order_shipment.telephone_number = "090-1234-5678"
+        @order_shipment.valid?
+        expect(@order_shipment.errors.full_messages).to include("Telephone number is invalid. Input half-width numbers between from 10 to 11 characters")
+      end
       it "tokenが空では保存できない" do
         @order_shipment.token = ""
         @order_shipment.valid?
