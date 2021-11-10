@@ -12,56 +12,56 @@ RSpec.describe OrderShipment, type: :model do
     end
 
     context '内容に問題ない場合' do
-      it "postal_code...tokenまで全て値が存在する" do
+      it 'postal_code...tokenまで全て値が存在する' do
         expect(@order_shipment).to be_valid
       end
-      it "building_nameは空でも保存できる" do
+      it 'building_nameは空でも保存できる' do
         @order_shipment.building_name = ''
         expect(@order_shipment).to be_valid
       end
     end
     context '内容に問題がある場合' do
-      it "postal_codeが空では保存できない" do
+      it 'postal_codeが空では保存できない' do
         @order_shipment.postal_code = ''
         @order_shipment.valid?
         expect(@order_shipment.errors.full_messages).to include("Postal code can't be blank")
       end
-      it "postal_codeは数字のみでは保存できない" do
+      it 'postal_codeは数字のみでは保存できない' do
         @order_shipment.postal_code = '1234567'
         @order_shipment.valid?
-        expect(@order_shipment.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        expect(@order_shipment.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
-      it "cityが空では保存できない" do
+      it 'cityが空では保存できない' do
         @order_shipment.city = ''
         @order_shipment.valid?
         expect(@order_shipment.errors.full_messages).to include("City can't be blank")
       end
-      it "house_numberが空では保存できない" do
+      it 'house_numberが空では保存できない' do
         @order_shipment.house_number = ''
         @order_shipment.valid?
         expect(@order_shipment.errors.full_messages).to include("House number can't be blank")
       end
-      it "telephone_numberが空では保存できない" do
-        @order_shipment.telephone_number = ""
+      it 'telephone_numberが空では保存できない' do
+        @order_shipment.telephone_number = ''
         @order_shipment.valid?
         expect(@order_shipment.errors.full_messages).to include("Telephone number can't be blank")
       end
-      it "telephone_numberが11桁以上では保存できない" do
-        @order_shipment.telephone_number = "090-1234-5678"
+      it 'telephone_numberが11桁以上では保存できない' do
+        @order_shipment.telephone_number = '090-1234-5678'
         @order_shipment.valid?
-        expect(@order_shipment.errors.full_messages).to include("Telephone number is invalid. Input half-width numbers between from 10 to 11 characters")
+        expect(@order_shipment.errors.full_messages).to include('Telephone number is invalid. Input half-width numbers between from 10 to 11 characters')
       end
-      it "tokenが空では保存できない" do
-        @order_shipment.token = ""
+      it 'tokenが空では保存できない' do
+        @order_shipment.token = ''
         @order_shipment.valid?
         expect(@order_shipment.errors.full_messages).to include("Token can't be blank")
       end
-      it "userと紐づいていないと保存できない" do
+      it 'userと紐づいていないと保存できない' do
         @order_shipment.user_id = nil
         @order_shipment.valid?
         expect(@order_shipment.errors.full_messages).to include("User can't be blank")
       end
-      it "itemと紐づいていないと保存できない" do
+      it 'itemと紐づいていないと保存できない' do
         @order_shipment.item_id = nil
         @order_shipment.valid?
         expect(@order_shipment.errors.full_messages).to include("Item can't be blank")
