@@ -2,9 +2,11 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one :order
   has_one_attached :image
+  has_many_attached :images
+  
 
   with_options presence: true do
-    validates :image
+    validates :images
     validates :item_name
     validates :explanation
     with_options numericality: { other_than: 1, message: "can't be blank" } do
@@ -20,7 +22,7 @@ class Item < ApplicationRecord
   end
 
   # memo|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-  # validates :item_name,         presence: true
+  # validates :item_name,        presence: true
   # validates :explanation,      presence: true
   # validates :category_id,      presence: true, numericality: { other_than: 1 , message: "can't be blank"}
   # validates :status_id,        presence: true, numericality: { other_than: 1 , message: "can't be blank"}
