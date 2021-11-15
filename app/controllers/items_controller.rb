@@ -17,6 +17,7 @@ class ItemsController < ApplicationController
       redirect_to root_path
     else
       render :new
+      flash.now[:alert] = "商品出品に失敗しました"
     end
   end
 
@@ -31,6 +32,7 @@ class ItemsController < ApplicationController
       redirect_to item_path(@item.id)
     else
       render :edit
+      flash.now[:alert] = "商品出品に失敗しました"
     end
   end
 
@@ -42,8 +44,8 @@ class ItemsController < ApplicationController
   private ###
 
   def item_params
-    params.require(:item).permit(:image, :item_name, :explanation, :category_id, :status_id, :price, :prefecture_id,
-                                 :shipment_fee_id, :shipment_days_id).merge(user_id: current_user.id)
+    params.require(:item).permit(:item_name, :explanation, :category_id, :status_id, :price, :prefecture_id,
+                                 :shipment_fee_id, :shipment_days_id, images: []).merge(user_id: current_user.id)
   end
 
   def set_item
