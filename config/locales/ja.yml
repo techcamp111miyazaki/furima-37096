@@ -1,0 +1,31 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        nickname: ニックネーム
+        birthday: 生年月日
+        last_name: 名前
+        Last_name: 名前
+        last_name_reading: 名前（フリガナ）
+        first_name: 苗字
+        first_name_reading: 苗字（フリガナ）
+      item:
+        explanation: 説明
+        image: 画像
+        images: 画像
+        item_name: 商品名
+        category_id: カテゴリー
+        status_id: 商品の状態
+        prefecture_id: 発送元の地域
+        shipment_fee_id: 配送料の負担
+        shipment_days_id: 発送までの日数
+        price: 価格
+
+  activemodel:
+    attributes:
+      order_shipment:
+        postal_code: 郵便番号
+        prefecture_id: 都道府県
+        city: 市区町村
+        house_number: 番地
+        telephone_number: 電話番号
