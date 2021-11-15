@@ -9,7 +9,7 @@ class Item < ApplicationRecord
     validates :images
     validates :item_name
     validates :explanation
-    with_options numericality: { other_than: 1, message: "can't be blank" } do
+    with_options numericality: { other_than: 1, message: "を入力してください" } do
       validates :category_id
       validates :status_id
       validates :prefecture_id
@@ -18,7 +18,7 @@ class Item < ApplicationRecord
     end
     validates :price,
               numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999,
-                              message: 'is invalid. Input half-width numbers between from 300 to 9,999,999.' }
+                              message: 'は300〜9,999,999で入力してください' }
   end
 
   # memo|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
