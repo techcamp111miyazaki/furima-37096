@@ -8,7 +8,7 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @item = Item.new
+    @item = ItemsTag.new
   end
 
   def create
@@ -29,11 +29,13 @@ class ItemsController < ApplicationController
   end
 
   def update
-    if @item.update(item_params)
+    @item_tag = ItemsTag.new(item_params)
+    if @item_tag.valid?
+      @item_tag.save
       redirect_to item_path(@item.id)
     else
       render :edit
-      flash.now[:alert] = "商品出品に失敗しました"
+      flash.now[:alert] = "商品編集に失敗しました"
     end
   end
 
@@ -46,7 +48,8 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:items_tag).permit(:item_name, :explanation, :category_id, :status_id, :price, :prefecture_id,
-                                 :shipment_fee_id, :shipment_days_id, :tag_name, images: []).merge(user_id: current_user.id)
+                                 :shipment_fee_id, :shipment_days_id, :tag_name, images: []
+                              ).merge(user_id: current_user.id)
   end
 
   def set_item

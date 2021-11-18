@@ -12,7 +12,6 @@
          <%= image_tag img, class: "item-box-img" %>
         <% end %>
       <% end %> 
-      <%= image_tag @item.image, class: "item-box-img" if @item.image.attached? %> 
       <div class="sold-out">
       <% if @item.order.present? %>
         <span>Sold Out!!</span>
@@ -68,6 +67,13 @@
         <tr>
           <th class="detail-item">発送日の目安</th>
           <td class="detail-value"><%= @item.shipment_days.name %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">タグ</th>
+          <td class="detail-value">
+          <% @item.tags.each do |tag| %>
+            <%= tag.tag_name %></td>
+          <% end %>
         </tr>
       </tbody>
     </table>

@@ -1,9 +1,10 @@
 class ItemsTag
 
   include ActiveModel::Model
-  attr_accessor :images, :item_name, :explanation, :category_id, :status_id, :prefecture_id,:shipment_fee_id, :shipment_days_id, :price, :tag_name
+  attr_accessor :user_id, :images, :item_name, :explanation, :category_id, :status_id, :prefecture_id,:shipment_fee_id, :shipment_days_id, :price, :tag_name
 
   with_options presence: true do
+    validates :user_id
     validates :images
     validates :item_name
     validates :explanation
@@ -21,17 +22,18 @@ class ItemsTag
   end
 
   def save
-    item = Item.create(images: images, item_name: item_name, explanation: explanation, category_id: category_id, status_id: status_id, prefecture_id: prefecture_id, shipment_fee_id: shipment_fee_id, shipment_days_id: shipment_days_id, price: price)
-    tag = Tag.create(tag_name: tag_name)
+    item = Item.create(images: images, item_name: item_name, explanation: explanation, category_id: category_id, status_id: status_id, prefecture_id: prefecture_id, shipment_fee_id: shipment_fee_id, shipment_days_id: shipment_days_id, price: price, user_id: user_id)
+    tag = Tag.where(tag_name: tag_name).first_or_initialize
+    tag.save
 
     ItemTagRelation.create(item_id: item.id, tag_id: tag.id)
   end
 
-  extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :category
-  belongs_to :status
-  belongs_to :prefecture
-  belongs_to :shipment_fee
-  belongs_to :shipment_days
+  # extend ActiveHash::Associations::ActiveRecordExtensions
+  # belongs_to :category
+  # belongs_to :status
+  # belongs_to :prefecture
+  # belongs_to :shipment_fee
+  # belongs_to :shipment_days
 
 end

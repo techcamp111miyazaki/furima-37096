@@ -19,7 +19,7 @@
         <p>
           クリックしてファイルをアップロード(４枚まで)
         </p>
-        <%= f.file_field :images, name: 'item[images][]', id:"item-image" %>
+        <%= f.file_field :images, name: 'items_tag[images][]', id:"item-image" %>
       </div>
     </div>
     <div id="image-list"></div>
@@ -118,8 +118,11 @@
 
     <%# /タグ%>
     <div class="tag-field", id='tag-field'>
-      <%= f.label :tag_name, "タグ" %>
-      <%= f.text_field :tag_name, class:"input-tag", placeholder:"タグ付けしよう！"%>
+      <div class="weight-bold-text">
+        タグ
+        <span class="indispensable">必須</span>
+      </div>
+      <%= f.text_field :tag_name, class:"input-tag", placeholder:"タグ付けしよう！（＃は不要です）"%>
     </div>
     <%# /タグ%>
 

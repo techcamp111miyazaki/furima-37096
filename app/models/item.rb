@@ -1,7 +1,6 @@
 class Item < ApplicationRecord
   belongs_to :user
   has_one :order
-  has_one_attached :image
   has_many_attached :images
   has_many :item_tag_relations
   has_many :tags, through: :item_tag_relations
@@ -32,10 +31,10 @@ class Item < ApplicationRecord
   # validates :shipment_fee_id,  presence: true, numericality: { other_than: 1 , message: "can't be blank"}
   # validates :shipment_days_id, presence: true, numericality: { other_than: 1 , message: "can't be blank"}
 
-  # extend ActiveHash::Associations::ActiveRecordExtensions
-  # belongs_to :category
-  # belongs_to :status
-  # belongs_to :prefecture
-  # belongs_to :shipment_fee
-  # belongs_to :shipment_days
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :category
+  belongs_to :status
+  belongs_to :prefecture
+  belongs_to :shipment_fee
+  belongs_to :shipment_days
 end

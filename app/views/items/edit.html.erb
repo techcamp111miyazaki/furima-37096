@@ -21,7 +21,7 @@ app/assets/stylesheets/items/new.css %>
         <p>
           クリックしてファイルをアップロード
         </p>
-        <%= f.file_field :images, name: 'item[images][]', id:"item-image" %>
+        <%= f.file_field :images, name: 'items_tag[images][]', id:"item-image" %>
       </div>
     </div>
     <%# /商品画像 %>
@@ -116,6 +116,16 @@ app/assets/stylesheets/items/new.css %>
       </div>
     </div>
     <%# /販売価格 %>
+
+    <%# /タグ%>
+    <div class="tag-field", id='tag-field'>
+      <div class="weight-bold-text">
+        タグ
+        <span class="indispensable">必須</span>
+      </div>
+      <%= f.text_field :tag_name, class:"input-tag", placeholder:"タグ付けしよう！（＃は不要です）"%>
+    </div>
+    <%# /タグ%>
 
     <%# 注意書き %>
     <div class="caution">

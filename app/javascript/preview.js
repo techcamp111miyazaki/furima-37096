@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function(){
       // ファイル選択ボタンを生成
       const inputHTML = document.createElement('input')
       inputHTML.setAttribute('id', `item-image-${imageElementNum}`)
-      inputHTML.setAttribute('name', 'item[images][]')
+      inputHTML.setAttribute('name', 'items_tag[images][]')
       inputHTML.setAttribute('type', 'file')
 
       
