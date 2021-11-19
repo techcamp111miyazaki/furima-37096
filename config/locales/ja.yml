@@ -29,3 +29,15 @@ ja:
         city: 市区町村
         house_number: 番地
         telephone_number: 電話番号
+      items_tag:
+        explanation: 説明
+        image: 商品画像
+        images: 商品画像
+        item_name: 商品名
+        category_id: カテゴリー
+        status_id: 商品の状態
+        prefecture_id: 発送元の地域
+        shipment_fee_id: 配送料の負担
+        shipment_days_id: 発送までの日数
+        price: 価格
+        tag_name: タグ名
