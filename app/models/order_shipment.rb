@@ -12,7 +12,7 @@ class OrderShipment
               format: { with: /\A\d{10,11}\z/, message: 'はハイフン無しの半角数字で入力してください' }
     validates :token
   end
-  validates :prefecture_id, numericality: { other_than: 1, message: "を入力してください" }
+  validates :prefecture_id, numericality: { other_than: 1, message: 'を入力してください' }
 
   def save
     order = Order.create(user_id: user_id, item_id: item_id)

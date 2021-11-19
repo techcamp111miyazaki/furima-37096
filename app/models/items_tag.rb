@@ -1,14 +1,14 @@
 class ItemsTag
-
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :images, :item_name, :explanation, :category_id, :status_id, :prefecture_id,:shipment_fee_id, :shipment_days_id, :price, :tag_name
+  attr_accessor :user_id, :item_id, :images, :item_name, :explanation, :category_id, :status_id, :prefecture_id, :shipment_fee_id,
+                :shipment_days_id, :price, :tag_name
 
   with_options presence: true do
     validates :user_id
     validates :images
     validates :item_name
     validates :explanation
-    with_options numericality: { other_than: 1, message: "を入力してください" } do
+    with_options numericality: { other_than: 1, message: 'を入力してください' } do
       validates :category_id
       validates :status_id
       validates :prefecture_id
@@ -22,7 +22,8 @@ class ItemsTag
   end
 
   def save
-    item = Item.create(images: images, item_name: item_name, explanation: explanation, category_id: category_id, status_id: status_id, prefecture_id: prefecture_id, shipment_fee_id: shipment_fee_id, shipment_days_id: shipment_days_id, price: price, user_id: user_id)
+    item = Item.create(images: images, item_name: item_name, explanation: explanation, category_id: category_id,
+                       status_id: status_id, prefecture_id: prefecture_id, shipment_fee_id: shipment_fee_id, shipment_days_id: shipment_days_id, price: price, user_id: user_id)
     tag = Tag.where(tag_name: tag_name).first_or_initialize
     tag.save
 
@@ -31,10 +32,11 @@ class ItemsTag
 
   def update
     @item = Item.where(id: item_id)
-    item = @item.update(images: images, item_name: item_name, explanation: explanation, category_id: category_id, status_id: status_id, prefecture_id: prefecture_id, shipment_fee_id: shipment_fee_id, shipment_days_id: shipment_days_id, price: price, user_id: user_id)
+    item = @item.update(images: images, item_name: item_name, explanation: explanation, category_id: category_id,
+                        status_id: status_id, prefecture_id: prefecture_id, shipment_fee_id: shipment_fee_id, shipment_days_id: shipment_days_id, price: price, user_id: user_id)
     tag = Tag.where(tag_name: tag_name).first_or_initialize
     tag.save
-    
+
     map = ItemTagRelation.where(item_id: item_id)
     map.update(item_id: item_id, tag_id: tag.id)
   end
@@ -45,5 +47,4 @@ class ItemsTag
   # belongs_to :prefecture
   # belongs_to :shipment_fee
   # belongs_to :shipment_days
-
 end

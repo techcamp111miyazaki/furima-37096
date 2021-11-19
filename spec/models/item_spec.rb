@@ -19,47 +19,47 @@ RSpec.describe Item, type: :model do
       it 'imageが空だと保存できない' do
         @item.images = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("画像を入力してください")
+        expect(@item.errors.full_messages).to include('画像を入力してください')
       end
       it 'item_nameが空だと保存できない' do
         @item.item_name = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("商品名を入力してください")
+        expect(@item.errors.full_messages).to include('商品名を入力してください')
       end
       it 'explanationが空だと保存できない' do
         @item.explanation = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("説明を入力してください")
+        expect(@item.errors.full_messages).to include('説明を入力してください')
       end
       it 'category_idが1だと保存できない' do
         @item.category_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("カテゴリーを入力してください")
+        expect(@item.errors.full_messages).to include('カテゴリーを入力してください')
       end
       it 'status_idが1だと保存できない' do
         @item.status_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("商品の状態を入力してください")
+        expect(@item.errors.full_messages).to include('商品の状態を入力してください')
       end
       it 'prefecture_idが1だと保存できない' do
         @item.prefecture_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("発送元の地域を入力してください")
+        expect(@item.errors.full_messages).to include('発送元の地域を入力してください')
       end
       it 'shipment_fee_idが1だと保存できない' do
         @item.shipment_fee_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("配送料の負担を入力してください")
+        expect(@item.errors.full_messages).to include('配送料の負担を入力してください')
       end
       it 'shipment_days_idが1だと保存できない' do
         @item.shipment_days_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("発送までの日数を入力してください")
+        expect(@item.errors.full_messages).to include('発送までの日数を入力してください')
       end
       it 'priceが空だと保存できない' do
         @item.price = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("価格を入力してください", "価格は300〜9,999,999で入力してください")
+        expect(@item.errors.full_messages).to include('価格を入力してください', '価格は300〜9,999,999で入力してください')
       end
       it 'priceが全角表記だと保存できない' do
         @item.price = '２２２２'
