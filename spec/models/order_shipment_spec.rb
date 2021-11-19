@@ -24,7 +24,7 @@ RSpec.describe OrderShipment, type: :model do
       it 'postal_codeが空では保存できない' do
         @order_shipment.postal_code = ''
         @order_shipment.valid?
-        expect(@order_shipment.errors.full_messages).to include("郵便番号を入力してください")
+        expect(@order_shipment.errors.full_messages).to include('郵便番号を入力してください')
       end
       it 'postal_codeは数字のみでは保存できない' do
         @order_shipment.postal_code = '1234567'
@@ -34,22 +34,22 @@ RSpec.describe OrderShipment, type: :model do
       it 'prefecture_idが１では保存できない' do
         @order_shipment.prefecture_id = 1
         @order_shipment.valid?
-        expect(@order_shipment.errors.full_messages).to include("都道府県を入力してください")
+        expect(@order_shipment.errors.full_messages).to include('都道府県を入力してください')
       end
       it 'cityが空では保存できない' do
         @order_shipment.city = ''
         @order_shipment.valid?
-        expect(@order_shipment.errors.full_messages).to include("市区町村を入力してください")
+        expect(@order_shipment.errors.full_messages).to include('市区町村を入力してください')
       end
       it 'house_numberが空では保存できない' do
         @order_shipment.house_number = ''
         @order_shipment.valid?
-        expect(@order_shipment.errors.full_messages).to include("番地を入力してください")
+        expect(@order_shipment.errors.full_messages).to include('番地を入力してください')
       end
       it 'telephone_numberが空では保存できない' do
         @order_shipment.telephone_number = ''
         @order_shipment.valid?
-        expect(@order_shipment.errors.full_messages).to include("電話番号を入力してください")
+        expect(@order_shipment.errors.full_messages).to include('電話番号を入力してください')
       end
       it 'telephone_numberが11桁以上では保存できない' do
         @order_shipment.telephone_number = '09012345678900'
@@ -69,17 +69,17 @@ RSpec.describe OrderShipment, type: :model do
       it 'tokenが空では保存できない' do
         @order_shipment.token = ''
         @order_shipment.valid?
-        expect(@order_shipment.errors.full_messages).to include("Tokenを入力してください")
+        expect(@order_shipment.errors.full_messages).to include('Tokenを入力してください')
       end
       it 'userと紐づいていないと保存できない' do
         @order_shipment.user_id = nil
         @order_shipment.valid?
-        expect(@order_shipment.errors.full_messages).to include("Userを入力してください")
+        expect(@order_shipment.errors.full_messages).to include('Userを入力してください')
       end
       it 'itemと紐づいていないと保存できない' do
         @order_shipment.item_id = nil
         @order_shipment.valid?
-        expect(@order_shipment.errors.full_messages).to include("Itemを入力してください")
+        expect(@order_shipment.errors.full_messages).to include('Itemを入力してください')
       end
     end
   end

@@ -8,16 +8,17 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @item = Item.new
+    @item = ItemsTag.new
   end
 
   def create
-    @item = Item.new(item_params)
-    if @item.save
+    @item = ItemsTag.new(item_params)
+    if @item.valid?
+      @item.save
       redirect_to root_path
     else
       render :new
-      flash.now[:alert] = "商品出品に失敗しました"
+      flash.now[:alert] = '商品出品に失敗しました'
     end
   end
 
@@ -25,14 +26,18 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    @items_tag = ItemsTag.new(item_name: @item.item_name, explanation: @item.explanation, category_id: @item.category_id, status_id: @item.status_id, price: @item.price, prefecture_id: @item.prefecture_id,
+                              shipment_fee_id: @item.shipment_fee_id, shipment_days_id: @item.shipment_days_id)
   end
 
   def update
-    if @item.update(item_params)
-      redirect_to item_path(@item.id)
+    @items_tag = ItemsTag.new(update_params)
+    if @items_tag.valid?
+      @items_tag.update
+      redirect_to root_path
     else
       render :edit
-      flash.now[:alert] = "商品出品に失敗しました"
+      flash.now[:alert] = '商品編集に失敗しました'
     end
   end
 
@@ -41,11 +46,30 @@ class ItemsController < ApplicationController
     redirect_to root_path
   end
 
+  def search
+    return nil if params[:keyword] == ''
+
+    tag = Tag.where(['tag_name Like ?', "%#{params[:keyword]}%"])
+    render json: { keyword: tag }
+  end
+
+  def search_id
+    return nil if params[:keyword] == ''
+
+    tag = Tag.where(['tag_name Like ?', "%#{params[:keyword]}%"])
+    render json: { keyword: tag }
+  end
+
   private ###
 
   def item_params
-    params.require(:item).permit(:item_name, :explanation, :category_id, :status_id, :price, :prefecture_id,
-                                 :shipment_fee_id, :shipment_days_id, images: []).merge(user_id: current_user.id)
+    params.require(:items_tag).permit(:item_name, :explanation, :category_id, :status_id, :price, :prefecture_id,
+                                      :shipment_fee_id, :shipment_days_id, :tag_name, images: []).merge(user_id: current_user.id)
+  end
+
+  def update_params
+    params.require(:items_tag).permit(:item_name, :explanation, :category_id, :status_id, :price, :prefecture_id,
+                                      :shipment_fee_id, :shipment_days_id, :tag_name, images: []).merge(user_id: current_user.id, item_id: params[:id])
   end
 
   def set_item
