@@ -150,10 +150,20 @@
 
 .comment-text {
   width: 100%;
-  height: 100px;
+  height: 75px;
   padding: 10px;
   border: solid 2px #dedede;
   resize: none;
+}
+
+.comment-index {
+  width: 100%;
+  padding: 10px;
+  resize: none;
+}
+
+#comment-ichiran{
+  text-align: left;
 }
 
 .comment-warn {
