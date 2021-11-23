@@ -4,7 +4,7 @@ class Item < ApplicationRecord
   has_many_attached :images
   has_many :item_tag_relations, dependent: :destroy
   has_many :tags, through: :item_tag_relations
-
+  has_many :comments
   # with_options presence: true do
   #   validates :images
   #   validates :item_name
