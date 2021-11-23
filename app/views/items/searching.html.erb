@@ -1,0 +1,76 @@
+<%= render "shared/header" %>
+<div class='main'>
+<%# 商品一覧 %>
+  <div class='item-contents'>
+    <h2 class='title'><%= @category.name %></h2>
+    <div class="subtitle" >
+      検索結果
+    </div>
+    <ul class='item-lists'>
+      <% if @results.length !=0  %>
+        <% @results.each do |result| %>
+          <li class='list'>
+            <%= link_to item_path(result.id) do %>
+              <div class='item-img-content'>
+                
+                <%= image_tag result.images[0], class: "item-img" if result.images.attached? %> 
+
+                <% if result.order.present? %>
+                  <div class='sold-out'>
+                    <span>Sold Out!!</span>
+                  </div>
+                <% end %>
+
+              </div>
+              <div class='item-info'>
+                <h3 class='item-name'>
+                  <%= result.item_name %>
+                </h3>
+                <div class='item-price'>
+                  <span><%= result.price %>円<br><%= result.shipment_fee.name%></span>
+                  <div class='star-btn'>
+                    <%= image_tag "star.png", class:"star-icon" %>
+                    <span class='star-count'>0</span> 
+                  </div> 
+                </div> 
+                <ul class="tag">
+                  <li class="tag-list">
+                    <% result.tags.each do |tag| %>
+                      #<%= tag.tag_name %>
+                    <%end%>
+                  </li>
+                </ul>
+              </div>
+            <% end %>
+          </li>
+        <% end %>
+      <% else %>
+          <li class='list'>
+            <%= link_to '#' do %>
+              <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
+              <div class='item-info'>
+                <h3 class='item-name'>
+                  商品を出品してね！
+                </h3>
+                <div class='item-price'>
+                  <span>99999999円<br>(税込み)</span>
+                  <div class='star-btn'>
+                    <%= image_tag "star.png", class:"star-icon" %>
+                    <span class='star-count'>0</span>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </li>
+      <% end %>
+    </ul>
+  </div>
+  <%# /商品一覧 %>
+  <br>
+  <%= link_to 'トップページへ戻る', root_path %>
+</div>
+<%= link_to(new_item_path, class: 'purchase-btn') do %>
+  <span class='purchase-btn-text'>出品する</span>
+  <%= image_tag 'icon_camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
+<% end %>
+<%= render "shared/footer" %>

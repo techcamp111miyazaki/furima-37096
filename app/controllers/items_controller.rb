@@ -1,10 +1,18 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :searching, :show]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :move_to_index, only: [:edit, :destroy]
+  before_action :search_item
+  before_action :set_item_column
 
   def index
     @items = Item.order('created_at DESC')
+  end
+
+  def searching
+    @results = @p.result.reverse
+    category_id = params[:q][:category_id_eq]
+    @category = Category.find_by(id: category_id)
   end
 
   def new
@@ -79,5 +87,13 @@ class ItemsController < ApplicationController
   def move_to_index
     item = Item.find(params[:id])
     redirect_to action: :index if user_signed_in? && current_user.id != item.user_id || item.order.present?
+  end
+
+  def search_item
+    @p = Item.ransack(params[:q])
+  end
+
+  def set_item_column
+    @item_category_id = Item.select('category_id').distinct
   end
 end

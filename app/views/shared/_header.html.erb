@@ -11,7 +11,20 @@
   </div>
   <div class='nav'>
     <ul class='lists-left'>
-      <li><%= link_to 'カテゴリー', "#", class: "category-list" %></li>
+      <li id="category-lists" class="category-list">
+        カテゴリ
+      </li>
+      <ul class="show-category-lists hidden", id="pull-down">
+        <li class="pull-down-list">
+          <%= search_form_for @p, url: items_searching_path do |f| %>
+            <%= f.collection_select :category_id_eq, Category.all, :id, :name, {class:"select-box", id:"item-category"} %>
+            <button class="search-button">
+              <%= image_tag "search.png", class:"search-icon" %>
+            </button>
+          <% end %>
+        </li>
+      </ul>
+
       <li><%= link_to 'ブランド', "#", class: "brand-list" %></li>
     </ul>
     <ul class='lists-right'>
