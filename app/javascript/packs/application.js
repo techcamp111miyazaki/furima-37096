@@ -12,6 +12,7 @@ require("../card")
 require("../preview")
 require("../tag_new")
 require("../tag_edit")
+require("../pdl")
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference

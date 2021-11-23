@@ -45,6 +45,10 @@
   width: 100%;
 }
 
+.hidden{
+  display: none;
+}
+
 .nav {
   font-size: 18px;
   display: flex;
@@ -64,6 +68,20 @@
   text-decoration: none;
   margin-right: 3vw;
   color: #333333;
+}
+
+.show-category-lists{
+  width: 300px;
+  position: absolute;
+  margin-right: 1.5vw;
+  margin-top: 4vh;
+  top: 70px;
+  background-color: #ffffff;
+}
+
+.pull-down-list{
+  padding: 15px 35px 15px 15px;
+  border: 1px solid #eee;
 }
 
 .brand-list {
