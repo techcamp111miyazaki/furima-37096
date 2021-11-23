@@ -94,6 +94,6 @@ class ItemsController < ApplicationController
   end
 
   def set_item_column
-    @item_category_id = Item.select("category_id").distinct
+    @item_category_id = Item.select('category_id').distinct
   end
 end
